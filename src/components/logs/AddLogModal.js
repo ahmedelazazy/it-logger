@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-export default function AddLogModal() {
+import { addLog } from '../../actions/logAction';
+
+function AddLogModal({ addLog }) {
 	const [message, setMessage] = useState('');
 	const [attention, setAttention] = useState(false);
 	const [tech, setTech] = useState('');
@@ -10,7 +13,15 @@ export default function AddLogModal() {
 		if (!message) M.toast({ html: 'Please enter a message' });
 		else if (!tech) M.toast({ html: 'Please select technician' });
 		else {
-			console.log('submit');
+			addLog({
+				message,
+				attention,
+				tech,
+				date: new Date(),
+			});
+
+			M.toast({ html: 'Log record created' });
+
 			setMessage('');
 			setTech('');
 			setAttention(false);
@@ -18,9 +29,9 @@ export default function AddLogModal() {
 	};
 
 	return (
-		<div id="edit-log-modal" className="modal" style={modalStyle}>
+		<div id="add-log-modal" className="modal" style={modalStyle}>
 			<div className="modal-content">
-				<h4>Enter System Log</h4>
+				<h4>Add System Log</h4>
 				<div className="row">
 					<div className="input-field">
 						<input type="text" name="message" value={message} onChange={e => setMessage(e.target.value)} />
@@ -29,7 +40,6 @@ export default function AddLogModal() {
 						</label>
 					</div>
 				</div>
-
 				<div className="row">
 					<div className="input-field">
 						<select name="tech" value={tech} className="browser-default" onChange={e => setTech(e.target.value)}>
@@ -42,7 +52,6 @@ export default function AddLogModal() {
 						</select>
 					</div>
 				</div>
-
 				<div className="row">
 					<div className="input-field">
 						<p>
@@ -67,3 +76,5 @@ const modalStyle = {
 	width: '75%',
 	height: '75%',
 };
+
+export default connect(null, { addLog })(AddLogModal);
