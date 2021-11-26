@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 import { updateLog } from '../../actions/logAction';
+import TechsSelectOptions from '../layout/TechsSelectOptions';
 
 function EditLogModal({ log, updateLog }) {
 	const [message, setMessage] = useState('');
@@ -50,9 +51,7 @@ function EditLogModal({ log, updateLog }) {
 							<option value="" disabled>
 								Select Technician
 							</option>
-							<option value="John Doe">John Doe</option>
-							<option value="Sam Smith">Sam Smith</option>
-							<option value="Sara Wilson">Sara Wilson</option>
+							<TechsSelectOptions />
 						</select>
 					</div>
 				</div>
@@ -67,19 +66,20 @@ function EditLogModal({ log, updateLog }) {
 						</p>
 					</div>
 				</div>
-			</div>
-			<div className="modal-footer">
-				<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
-					Enter
-				</a>
+
+				<div className="modal-footer">
+					<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
+						Enter
+					</a>
+				</div>
 			</div>
 		</div>
 	);
 }
 
 const modalStyle = {
-	width: '75%',
-	height: '75%',
+	// width: '75%',
+	// height: '75%',
 };
 
 const mapStateToProps = state => ({

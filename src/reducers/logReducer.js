@@ -1,7 +1,7 @@
 import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, UPDATE_LOG, SET_CURRENT, CLEAR_CURRENT, SEARCH_LOGS } from '../actions/types';
 
 const initialState = {
-	logs: null,
+	logs: [],
 	current: null,
 	loading: false,
 	error: null,

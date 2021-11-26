@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../config/axios';
 import { GET_LOGS, SET_LOADING, LOGS_ERROR, ADD_LOG, DELETE_LOG, UPDATE_LOG, SET_CURRENT, CLEAR_CURRENT, SEARCH_LOGS } from './types';
 
 export const getLogs = () => async dispatch => {

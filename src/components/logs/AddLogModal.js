@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 import { addLog } from '../../actions/logAction';
+import TechsSelectOptions from '../layout/TechsSelectOptions';
 
 function AddLogModal({ addLog }) {
 	const [message, setMessage] = useState('');
@@ -46,9 +47,7 @@ function AddLogModal({ addLog }) {
 							<option value="" disabled>
 								Select Technician
 							</option>
-							<option value="John Doe">John Doe</option>
-							<option value="Sam Smith">Sam Smith</option>
-							<option value="Sara Wilson">Sara Wilson</option>
+							<TechsSelectOptions />
 						</select>
 					</div>
 				</div>
@@ -62,19 +61,20 @@ function AddLogModal({ addLog }) {
 						</p>
 					</div>
 				</div>
-			</div>
-			<div className="modal-footer">
-				<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
-					Enter
-				</a>
+
+				<div className="modal-footer">
+					<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
+						Enter
+					</a>
+				</div>
 			</div>
 		</div>
 	);
 }
 
 const modalStyle = {
-	width: '75%',
-	height: '75%',
+	// width: '75%',
+	// height: '75%',
 };
 
 export default connect(null, { addLog })(AddLogModal);

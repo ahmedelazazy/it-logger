@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize.min.js';
+import { connect } from 'react-redux';
 
-export default function AddTechModal() {
+import { addTech } from '../../actions/techAction';
+
+function AddTechModal({ addTech }) {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 
@@ -9,7 +12,8 @@ export default function AddTechModal() {
 		if (!firstName) M.toast({ html: 'Please enter first name' });
 		else if (!lastName) M.toast({ html: 'Please enter last name' });
 		else {
-			console.log('submit');
+			addTech({ firstName, lastName });
+			M.toast({ html: `${firstName} ${lastName} saved successfully` });
 			setFirstName('');
 			setLastName('');
 		}
@@ -36,12 +40,15 @@ export default function AddTechModal() {
 						</label>
 					</div>
 				</div>
-			</div>
-			<div className="modal-footer">
-				<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
-					Enter
-				</a>
+
+				<div className="modal-footer">
+					<a href="#!" onClick={onSubmit} className="modal-close waves-effect blue waves-light btn">
+						Enter
+					</a>
+				</div>
 			</div>
 		</div>
 	);
 }
+
+export default connect(null, { addTech })(AddTechModal);
